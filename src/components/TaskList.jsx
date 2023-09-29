@@ -91,6 +91,19 @@ const TaskList = () => {
     }
   };
 
+  const setTaskToComplete = async (task) => {
+    const newFormData = {
+      name: task.name,
+      completed: !task.completed,
+    };
+    try {
+      await axios.put(`${URL}/api/tasks/update/${task._id}`, newFormData);
+      getTasks();
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
   return (
     <div>
       <h2>Task Manager</h2>
@@ -129,6 +142,7 @@ const TaskList = () => {
                 index={index}
                 deleteTask={deleteTask}
                 getSingleTask={getSingleTask}
+                setTaskToComplete={setTaskToComplete}
               />
             );
           })}
