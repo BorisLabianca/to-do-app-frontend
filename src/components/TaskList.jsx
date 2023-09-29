@@ -104,6 +104,13 @@ const TaskList = () => {
     }
   };
 
+  useEffect(() => {
+    const compTask = tasks.filter((task) => {
+      return task.completed === true;
+    });
+    setCompletedTasks(compTask);
+  }, [tasks]);
+
   return (
     <div>
       <h2>Task Manager</h2>
@@ -119,7 +126,7 @@ const TaskList = () => {
           <b>Total Tasks: {`${tasks.length}`}</b>
         </p>
         <p>
-          <b>Completed Tasks: {`${tasks.length}`}</b>
+          <b>Completed Tasks: {`${completedTasks.length}`}</b>
         </p>
       </div>
       <hr />
